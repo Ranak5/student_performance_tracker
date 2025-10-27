@@ -1,0 +1,155 @@
+create database student_tracker;
+use student_tracker;
+
+SELECT * FROM stud_track;
+
+#1) Student Performance Analytics Dashboard
+
+# a) students with GPA greater 3.50 from Major :  Science
+
+select 
+	StudentID,
+	Age,
+	AttendanceRate,
+	Major,
+	GPA ,
+	count(StudentID) over() as total 
+from stud_track
+where GPA >= 3.50 and Major = 'Science';
+
+# b) students with GPA greater 3.50 from Major :  Arts
+
+select 
+	StudentID,
+	Age,
+	AttendanceRate,
+	Major,
+	GPA ,
+	count(StudentID) over() as total 
+from stud_track
+where GPA >= 3.50 and Major = 'Arts';
+
+# c) students with GPA greater 3.50 from Major :  Business
+
+select 
+	StudentID,
+	Age,
+	AttendanceRate,
+	Major,
+	GPA ,
+	count(StudentID) over() as total 
+from stud_track
+where GPA >= 3.50 and Major = 'Business';
+
+# d) students with GPA greater 3.50 from Major :  Education
+
+select 
+	StudentID,
+	Age,
+	AttendanceRate,
+	Major,
+	GPA ,
+	count(StudentID) over() as total 
+from stud_track
+where GPA >= 3.50 and Major = 'Education';
+
+# e) students with GPA greater 3.50 from Major :  Engineering
+
+select 
+	StudentID,
+	Age,
+	AttendanceRate,
+	Major,
+	GPA ,
+	count(StudentID) over() as total 
+from stud_track
+where GPA >= 3.50 and Major = 'Engineering';
+
+#f) Top 10 scorer from Science Major
+
+select * 
+from 
+(
+	select 
+		StudentID,
+		Age,
+		AttendanceRate,
+		Major,
+		GPA ,
+		rank() over(order by GPA desc) as Ranking
+	from stud_track
+	where GPA >= 3.50 and Major = 'Science'
+)t
+where Ranking <= 10;
+
+#g) Top 10 scorer from Arts Major
+
+select * 
+from 
+(
+	select 
+		StudentID,
+		Age,
+		AttendanceRate,
+		Major,
+		GPA ,
+		rank() over(order by GPA desc) as Ranking
+	from stud_track
+	where GPA >= 3.50 and Major = 'Arts'
+)t
+where Ranking <= 10;
+
+#h) Top 10 scorer from Business Major
+
+select * 
+from 
+(
+	select 
+		StudentID,
+		Age,
+		AttendanceRate,
+		Major,
+		GPA ,
+		rank() over(order by GPA desc) as Ranking
+	from stud_track
+	where GPA >= 3.50 and Major = 'Business'
+)t
+where Ranking <= 10;
+
+
+#i) Top 10 scorer from Education Major
+
+select * 
+from 
+(
+	select 
+		StudentID,
+		Age,
+		AttendanceRate,
+		Major,
+		GPA ,
+		rank() over(order by GPA desc) as Ranking
+	from stud_track
+	where GPA >= 3.50 and Major = 'Education'
+)t
+where Ranking <= 10;
+
+#j) Top 10 scorer from Engineering Major
+
+select * 
+from 
+(
+	select 
+		StudentID,
+		Age,
+		AttendanceRate,
+		Major,
+		GPA ,
+		rank() over(order by GPA desc) as Ranking
+	from stud_track
+	where GPA >= 3.50 and Major = 'Engineering'
+)t
+where Ranking <= 10;
+
+#To Access all the records here are the views list which are specified based on Separate Majors
+show full tables where table_type = 'VIEW';
